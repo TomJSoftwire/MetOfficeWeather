@@ -23,10 +23,7 @@ public class Forecast {
             Map<String, Object> location = (Map<String, Object>) dv.get("Location");
 
             String jsonArray = mapper.writeValueAsString(location.get("Period"));
-            //System.out.println(jsonArray);
             forecastPeriod =  mapper.readValue(jsonArray,ForecastDay[].class);
-
-            System.out.println(forecastPeriod);
         }catch(Exception e){
             System.out.println("Unpack Function Error 1");
             e.printStackTrace();
