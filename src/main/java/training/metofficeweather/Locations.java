@@ -15,4 +15,12 @@ public class Locations {
             location.display();
         }
     }
+    public Location searchByName(String name) {
+        for (Location location: locationList) {
+            if (location.getName().equalsIgnoreCase(name)) {
+                return location;
+            }
+        }
+        return null;
+    }
 }
