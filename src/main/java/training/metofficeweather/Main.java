@@ -27,6 +27,7 @@ public class Main {
                 help();
             } else if (location != null) {
                 Forecast forecast = api.getForecast(location);
+                forecast.display();
             } else {
                 System.out.println("The location was not found.");
             }

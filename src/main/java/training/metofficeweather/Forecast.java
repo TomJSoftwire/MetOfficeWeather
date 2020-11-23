@@ -2,16 +2,16 @@ package training.metofficeweather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.ArrayList;
 import java.util.Map;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Forecast {
-    //@JsonProperty(value="Period")
     private ForecastDay[] forecastPeriod;
+    private String forecastLocation;
 
     @SuppressWarnings("unchecked")
     @JsonProperty("SiteRep")
@@ -22,14 +22,21 @@ public class Forecast {
             Map<String, Object> dv = (Map<String, Object>) siteRep.get("DV");
             Map<String, Object> location = (Map<String, Object>) dv.get("Location");
 
+            forecastLocation = (String) location.get("name");
+
             String jsonArray = mapper.writeValueAsString(location.get("Period"));
             forecastPeriod =  mapper.readValue(jsonArray,ForecastDay[].class);
-        }catch(Exception e){
+        }catch(JsonProcessingException e){
             System.out.println("Unpack Function Error 1");
             e.printStackTrace();
         }
     }
-
+    public void display(){
+        System.out.println("Weather in " + Toolkit.greenText(forecastLocation) + " for the next 5 days.");
+        for(ForecastDay day : forecastPeriod){
+            day.display();
+        }
+    }
     public ForecastDay[] getForecastPeriod() {
         return forecastPeriod;
     }
