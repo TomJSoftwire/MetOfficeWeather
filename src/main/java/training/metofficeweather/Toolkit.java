@@ -5,6 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Toolkit {
     private static List<String> weatherCodes = getCodes();
@@ -30,5 +33,13 @@ public class Toolkit {
 
     public static String getWeatherCode(int code) {
         return weatherCodes.get(code);
+    }
+
+    public static String redText(String text) {
+        return "\u001b[31m" + text + "\u001b[0m";
+    }
+    public static String showDateOnly(Date date) {
+        DateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(date);
     }
 }

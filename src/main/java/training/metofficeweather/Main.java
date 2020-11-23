@@ -27,6 +27,7 @@ public class Main {
                 help();
             } else if (location != null) {
                 Forecast forecast = api.getForecast(location);
+                forecast.display();
             } else {
                 System.out.println("The location was not found.");
             }
@@ -34,10 +35,10 @@ public class Main {
     }
 
     public static void help() {
-        System.out.println("Enter " + Toolkit.greenText("exit") + " to quit the application.");
+        System.out.println("Enter " + Toolkit.greenText("quit") + " to quit the application.");
         System.out.println("Enter " + Toolkit.greenText("all") + " to redisplay the list of locations.");
         System.out.println("Enter " + Toolkit.greenText("help") + " to redisplay this message.");
         System.out.println("Enter the name of a location to display the forecast for that location.");
-        System.out.println("Note that only the name in green should be entered!");
+        System.out.println("Note that only the name in green should be entered!\n");
     }
 }	
