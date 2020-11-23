@@ -17,10 +17,14 @@ public class ForecastBlock {
     @JsonProperty(value="Pp")
     private int precipitationProbability;
 
+    @JsonProperty(value="$")
+    private int minutes;
+
     public void display() {
-        System.out.println(Toolkit.blueBoldText(Toolkit.getWeatherCode(weatherCode)));
-        System.out.println("Temperature is " + temperature + " degrees Centigrade");
+        String title = String.format("%02d:%02d %s", minutes / 60, minutes % 60, Toolkit.getWeatherCode(weatherCode));
+        System.out.println(Toolkit.blueBoldText(title));
+        System.out.println("Temperature of " + temperature + " degrees Centigrade");
         System.out.println("Feels like " + feelsLike + " degrees Centigrade");
-        System.out.println("Chance of rain is " + precipitationProbability + " %\n");
+        System.out.println(precipitationProbability + "% chance of rain\n");
     }
 }
