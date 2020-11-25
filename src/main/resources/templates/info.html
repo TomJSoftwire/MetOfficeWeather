@@ -10,7 +10,18 @@
     </head>
     <body>
         <div layout:fragment="content" class="container body-content">
-            <h2>Weather Information</h2>
+            <h2>Weather Information for <span th:text="${weatherInfo.locationName}"></span></h2>
+            <div th:each="day: ${weatherInfo.forecast.forecastPeriod}">
+                <h3><span th:text="${day.formatDate()}"></span></h3>
+                <div th:each="block : ${day.forecastBlocks}">
+                    <h4><span th:text="${block.getFormattedTime()}"></span> - <span th:text="${block.displayWeatherType()}"></span></h4>
+                    <ul>
+                        <li th:text="${block.displayTemperature()}"></li>
+                        <li th:text="${block.displayFeelsLike()}"></li>
+                        <li th:text="${block.displayPrecipChance()}"></li>
+                    </ul>
+                </div>
+            </div>
             <div>
                 <p>You entered location id <span th:text="${weatherInfo.locationId}"></span></p>
             </div>

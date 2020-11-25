@@ -29,7 +29,9 @@ public class ForecastDay {
     public ForecastBlock[] getForecastBlocks() {
         return forecastBlocks;
     }
-
+    public String formatDate(){
+        return Toolkit.showDateOnly(date);
+    }
     public Date getDate() {
         return date;
     }
