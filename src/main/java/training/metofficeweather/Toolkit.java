@@ -11,7 +11,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Toolkit {
-    private static List<String> weatherCodes = getCodes();
+    private static List<String> weatherCodes = getCodes("Resources/WeatherTypeLookup.txt");
+    public static final List<String> weatherIconCodes = getCodes("Resources/WeatherIconCodes.txt");
+
+    private Toolkit(){}
 
     public static String greenText(String text) {
         return "\u001b[32m" + text + "\u001b[0m";
@@ -21,9 +24,9 @@ public class Toolkit {
         return "\u001b[36m\u001b[1m" + text + "\u001b[0m\u001b[0m";
     }
 
-    public static List<String> getCodes() {
+    public static List<String> getCodes(String src) {
         try {
-            List<String> codes = Files.readAllLines(Paths.get("Resources/WeatherTypeLookup.txt"));
+            List<String> codes = Files.readAllLines(Paths.get(src));
             return codes;
         }
         catch (IOException e) {
@@ -31,6 +34,8 @@ public class Toolkit {
             return new ArrayList();
         }
     }
+
+
 
     public static String getWeatherCode(int code) {
         return weatherCodes.get(code);

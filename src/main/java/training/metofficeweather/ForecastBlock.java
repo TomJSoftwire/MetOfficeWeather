@@ -3,6 +3,8 @@ package training.metofficeweather;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.tools.Tool;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ForecastBlock {
     @JsonProperty(value="W")
@@ -63,40 +65,7 @@ public class ForecastBlock {
         return precipitationProbability + " %";
     }
     public String getWeatherIcon(){
-        String[] iconCodes = {
-                "fa-moon",
-                "fa-sun",
-                "fa-cloud-moon",
-                "fa-cloud-sun",
-                "N/A",
-                "fa-smog",
-                "fa-smog",
-                "fa-cloud",
-                "fa-cloud-sun",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-cloud-showers-heavy",
-                "fa-snowflake",
-                "fa-snowflake",
-                "fa-snowflake",
-                "fa-snowflake",
-                "fa-snowflake",
-                "fa-snowflake",
-                "fa-bolt",
-                "fa-bolt",
-                "fa-bolt",
-        };
-        String iconCode = iconCodes[weatherCode];
+        String iconCode = Toolkit.weatherIconCodes.get(weatherCode);
         return "fas fa-3x " + iconCode;
     }
 }
