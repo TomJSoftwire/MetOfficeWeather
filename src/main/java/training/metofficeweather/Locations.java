@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Locations {
+
     @JsonProperty(value="Location")
     private ArrayList<Location> locationList;
+
     public Location getFirst(){
         return locationList.get(0);
     }
@@ -24,5 +26,9 @@ public class Locations {
             }
         }
         return null;
+    }
+
+    public ArrayList<Location> getLocationList() {
+        return locationList;
     }
 }

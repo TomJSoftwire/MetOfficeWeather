@@ -3,10 +3,8 @@ package training.metofficeweather;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.tools.Tool;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Location {
+public class Location implements Comparable<Location> {
     @JsonProperty
     private String id;
 
@@ -28,4 +26,15 @@ public class Location {
         return id;
     }
 
+    public String getUnitaryAuthArea() {
+        if (unitaryAuthArea == null) {
+            return "Other";
+        }
+        return unitaryAuthArea;
+    }
+
+    @Override
+    public int compareTo(Location location) {
+        return name.compareTo(location.getName());
+    }
 }

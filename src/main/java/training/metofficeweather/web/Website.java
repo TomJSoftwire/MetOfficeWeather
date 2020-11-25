@@ -20,7 +20,7 @@ public class Website {
 
     @RequestMapping("/")
     ModelAndView home() {
-        return new ModelAndView("index");
+        return new ModelAndView("index", "locations", new GroupedLocations(api.getLocations()));
     }
 
     @RequestMapping("/weatherInfo")
