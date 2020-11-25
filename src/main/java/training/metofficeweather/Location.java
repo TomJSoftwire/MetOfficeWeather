@@ -28,4 +28,8 @@ public class Location {
         return id;
     }
 
+    public String getUnitaryAuthArea() {
+        return unitaryAuthArea;
+    }
+
 }

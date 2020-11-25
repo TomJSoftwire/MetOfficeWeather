@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
+<!--@thymesVar id="locations" type="training.metofficeweather.Locations"-->
 <head>
     <title>Home page</title>
 </head>
@@ -16,7 +17,13 @@
             <form id="messageForm" th:action="@{/weatherInfo}" method="get">
                 <fieldset>
                     <legend>Location ID: </legend>
-                    <input type="text" name="locationId">
+                    <select name="locationId">
+                        <option th:each="location : ${locations.locationList}"
+                                th:value="${location.id}">
+                            <span th:text="${location.name}"></span>,
+                            <span th:text="${location.unitaryAuthArea}"></span>
+                        </option>
+                    </select>
                     <input type="submit" value="Get Weather Info" />
                 </fieldset>
             </form>
