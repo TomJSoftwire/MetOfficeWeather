@@ -26,7 +26,7 @@ public class GroupedLocations {
 
     public List<Location> getLocations(String authArea) {
         List<Location> locations = locationsByAuthArea.get(authArea);
-        //Collections.sort(locations);
+        Collections.sort(locations);
         return locations;
     }
 }
