@@ -6,22 +6,45 @@
     <!--@thymesVar id="weatherInfo" type="training.metofficeweather.web.WeatherInfo"-->
 
     <head>
+        <link rel="stylesheet" th:href="@{/css/TableFormatting.css}" />
+        <link rel="stylesheet" th:href="@{/css/weather-icons.css}" />
+        <script src="https://kit.fontawesome.com/fda872b408.js" crossorigin="anonymous"></script>
         <title>Weather Information</title>
     </head>
     <body>
         <div layout:fragment="content" class="container body-content">
-            <h2>Weather Information for <span th:text="${weatherInfo.locationName}"></span></h2>
-            <div th:each="day: ${weatherInfo.forecast.forecastPeriod}">
-                <h3><span th:text="${day.formatDate()}"></span></h3>
-                <div th:each="block : ${day.forecastBlocks}">
-                    <h4><span th:text="${block.getFormattedTime()}"></span> - <span th:text="${block.displayWeatherType()}"></span></h4>
-                    <ul>
-                        <li th:text="${block.displayTemperature()}"></li>
-                        <li th:text="${block.displayFeelsLike()}"></li>
-                        <li th:text="${block.displayPrecipChance()}"></li>
-                    </ul>
+            <h2 class="test">Weather Information for <span th:text="${weatherInfo.locationName}"></span></h2>
+                <div th:each="day: ${weatherInfo.forecast.forecastPeriod}">
+                    <h3><span th:text="${day.formatDate()}"></span></h3>
+                    <table style="width:100%">
+                            <tr>
+                                <th>Time</th>
+                                <th th:each="block : ${day.forecastBlocks}" class="centered"><span th:text="${block.getFormattedTime()}" ></span></th>
+
+                            </tr>
+                            <tr >
+                                <th>Weather</th>
+                                <td th:each="block : ${day.forecastBlocks}" >
+                                    <i th:class="${block.getWeatherIcon()}"></i>
+                                    <br/>
+                                    <span th:text="${block.displayWeatherType()}"></span>
+                                </td>
+                            </tr>
+                            <tr >
+                                <th>Temperature</th>
+                                <td th:each="block : ${day.forecastBlocks}" th:text="${block.displayTemperature()}"></td>
+                            </tr>
+                            <tr>
+                                <th>Feels Like</th>
+                                <td th:each="block : ${day.forecastBlocks}" th:text="${block.displayFeelsLike()}"></td>
+                            </tr>
+                            <tr>
+                                <th>Chance of Precipitation</th>
+                                <td th:each="block : ${day.forecastBlocks}" th:text="${block.displayPrecipChance()}"></td>
+                            </tr>
+                    </table>
+                    <br />
                 </div>
-            </div>
             <div>
                 <p>You entered location id <span th:text="${weatherInfo.locationId}"></span></p>
             </div>

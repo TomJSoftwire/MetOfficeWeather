@@ -54,12 +54,49 @@ public class ForecastBlock {
         return Toolkit.getWeatherCode(weatherCode);
     }
     public String displayTemperature(){
-        return "Temperature of " + temperature + " degrees Centigrade";
+        return  temperature + " °C";
     }
     public String displayFeelsLike(){
-        return "Feels like " + feelsLike + " degrees Centigrade";
+        return  feelsLike + " °C";
     }
     public String displayPrecipChance(){
-        return precipitationProbability + "% chance of rain";
+        return precipitationProbability + " %";
+    }
+    public String getWeatherIcon(){
+        String[] iconCodes = {
+                "fa-moon",
+                "fa-sun",
+                "fa-cloud-moon",
+                "fa-cloud-sun",
+                "N/A",
+                "fa-smog",
+                "fa-smog",
+                "fa-cloud",
+                "fa-cloud-sun",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-cloud-showers-heavy",
+                "fa-snowflake",
+                "fa-snowflake",
+                "fa-snowflake",
+                "fa-snowflake",
+                "fa-snowflake",
+                "fa-snowflake",
+                "fa-bolt",
+                "fa-bolt",
+                "fa-bolt",
+        };
+        String iconCode = iconCodes[weatherCode];
+        return "fas fa-3x " + iconCode;
     }
 }
