@@ -1,16 +1,21 @@
 package training.metofficeweather;
+import org.springframework.boot.SpringApplication;
+import training.metofficeweather.web.Website;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]) throws IOException {
-        APIHandler api = new APIHandler();
+        SpringApplication.run(Website.class, args);
+        /**APIHandler api = new APIHandler();
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Getting available locations... \n");
         Locations locations = api.getLocations();
         locations.printAll();
         interact(scan, locations, api);
+         **/
     }
 
     public static void interact(Scanner scan, Locations locations, APIHandler api) {
