@@ -46,4 +46,8 @@ public class Forecast {
     public ForecastDay[] getForecastPeriod() {
         return forecastPeriod;
     }
+
+    public String getForecastLocation() {
+        return forecastLocation;
+    }
 }

@@ -37,6 +37,11 @@ public class APIHandler {
 
     public Forecast getForecast(Location location){
         String locationId = location.getId();
+        return getForecast(locationId);
+
+    }
+
+    public Forecast getForecast(String locationId){
         Response response = webTarget.path(locationId)
                 .queryParam("res","3hourly")
                 .queryParam("key", key)
