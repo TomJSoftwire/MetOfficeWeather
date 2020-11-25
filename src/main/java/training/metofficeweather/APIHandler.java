@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class APIHandler {
     private final String key = getKey();
@@ -18,7 +19,7 @@ public class APIHandler {
     }
 
     private String getKey() throws IOException {
-        return Files.readString(Path.of("keys/key.txt")).strip();
+        return Files.readAllLines(Paths.get("keys/key.txt")).get(0);
     }
 
     private WebTarget getDefaultTarget() {

@@ -3,6 +3,7 @@ package training.metofficeweather;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.text.DateFormat;
@@ -22,7 +23,7 @@ public class Toolkit {
 
     public static List<String> getCodes() {
         try {
-            List<String> codes = Files.readAllLines(Path.of("Resources/WeatherTypeLookup.txt"));
+            List<String> codes = Files.readAllLines(Paths.get("Resources/WeatherTypeLookup.txt"));
             return codes;
         }
         catch (IOException e) {
