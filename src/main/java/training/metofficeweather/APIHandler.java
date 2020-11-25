@@ -6,20 +6,17 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class APIHandler {
     private final String key = getKey();
     private final WebTarget webTarget = getDefaultTarget();
 
-    public APIHandler() throws IOException {
+    public APIHandler() {
     }
 
-    private String getKey() throws IOException {
-        return Files.readAllLines(Paths.get("keys/key.txt")).get(0);
+    private String getKey() {
+        System.out.println(System.getenv("KEY"));
+        return System.getenv("KEY").replace("_", "-");
     }
 
     private WebTarget getDefaultTarget() {
