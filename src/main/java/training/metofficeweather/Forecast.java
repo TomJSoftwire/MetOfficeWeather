@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -25,7 +27,11 @@ public class Forecast {
             forecastLocation = (String) location.get("name");
 
             String jsonArray = mapper.writeValueAsString(location.get("Period"));
-            forecastPeriod =  mapper.readValue(jsonArray,ForecastDay[].class);
+            try {
+                forecastPeriod =  mapper.readValue(jsonArray,ForecastDay[].class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }catch(JsonProcessingException e){
             System.out.println("Unpack Function Error 1");
             e.printStackTrace();
