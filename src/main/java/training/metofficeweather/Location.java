@@ -29,6 +29,9 @@ public class Location {
     }
 
     public String getUnitaryAuthArea() {
+        if (unitaryAuthArea == null) {
+            return "Other";
+        }
         return unitaryAuthArea;
     }
 

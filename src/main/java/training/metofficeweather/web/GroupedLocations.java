@@ -3,9 +3,7 @@ package training.metofficeweather.web;
 import training.metofficeweather.Location;
 import training.metofficeweather.Locations;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -20,11 +18,15 @@ public class GroupedLocations {
                         .collect(groupingBy(Location::getUnitaryAuthArea));
     }
 
-    private Set<String> getAuthAreas() {
-        return locationsByAuthArea.keySet();
+    public List<String> getAuthAreas() {
+        List<String> authList =  new ArrayList<>(locationsByAuthArea.keySet());
+        Collections.sort(authList);
+        return authList;
     }
 
-    private List<Location> getLocations(String authArea) {
-        return locationsByAuthArea.get(authArea);
+    public List<Location> getLocations(String authArea) {
+        List<Location> locations = locationsByAuthArea.get(authArea);
+        //Collections.sort(locations);
+        return locations;
     }
 }
